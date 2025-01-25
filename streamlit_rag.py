@@ -13,7 +13,8 @@ with st.sidebar:
 
 
 st.title("🔎 LangChain - Auto Search")
-######################################
+
+
 # Initialize session state for storing messages
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
