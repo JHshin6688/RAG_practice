@@ -6,3 +6,4 @@ PyPDF2
 flask
 chromadb
 langchain_huggingface
+bs4
