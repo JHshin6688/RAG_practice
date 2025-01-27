@@ -1,20 +1,27 @@
-# Version2 ConversationBufferMemory and create_retrieval_chain
+# Version3 RAG_ver2 + memory functionality
 import streamlit as st
 import os
+import getpass
 from dotenv import load_dotenv
 load_dotenv()
 USER_AGENT = os.getenv("USER_AGENT")
 
-from langchain_community.document_loaders import WebBaseLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import Chroma
-from langchain import hub
 from langchain_openai import ChatOpenAI
-from langchain.memory import ConversationBufferMemory
+from langchain_openai import OpenAIEmbeddings
+
+import bs4
+from langchain import hub
+from langchain_community.document_loaders import WebBaseLoader
+
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+from langchain_community.vectorstores import Chroma
 
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
+
+
+
 
 with st.sidebar:
     openai_api_key = st.text_input(
@@ -52,11 +59,7 @@ web_loader = WebBaseLoader([
 
 data = web_loader.load()
 
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size = 500, 
-    chunk_overlap = 0
-)
-
+text_splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap = 0)
 all_splits = text_splitter.split_documents(data)
 
 vectorstore = Chroma.from_documents(

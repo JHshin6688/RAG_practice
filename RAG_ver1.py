@@ -71,7 +71,7 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    # Create RAG chat bot
+    # Create RAG chain
     os.environ["OPENAI_API_KEY"] = openai_api_key
     model = ChatOpenAI(model_name="gpt-4", temperature=0)
 
