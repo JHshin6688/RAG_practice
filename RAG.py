@@ -27,9 +27,8 @@ with st.sidebar:
         "OpenAI API Key", key="langchain_search_api_key_openai", type="password"
     )
     "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
-    "[View the source code](https://github.com/streamlit/llm-examples/blob/main/pages/2_Chat_with_search.py)"
 
-st.title("🔎 LangChain - NFL Search")
+st.title("🏈 NFL RAG")
 
 
 # Initialize session state for storing messages
