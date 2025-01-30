@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 
 def crawl(url):
-    #url = "https://www.nfl.com/news/all-news"
     response = requests.get(url)
 
     page_links = []
