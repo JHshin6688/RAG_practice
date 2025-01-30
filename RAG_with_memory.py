@@ -20,8 +20,7 @@ from langchain_community.vectorstores import Chroma
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
-
-
+import webutil
 
 with st.sidebar:
     openai_api_key = st.text_input(
@@ -49,13 +48,12 @@ if "messages" not in st.session_state:
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
 
+# Crawl the most recent 32 NFL news from the official website
+initial_link = "https://www.nfl.com/news/all-news"
+links = webutil.crawl(initial_link)
 
 # Construct the vector database
-web_loader = WebBaseLoader([
-    "https://www.nfl.com/news/all-news",
-    "https://www.nfl.com/news/sza-to-join-kendrick-lamar-as-guest-during-super-bowl-halftime-performance"
-    ]
-)
+web_loader = WebBaseLoader(links)
 
 data = web_loader.load()
 
@@ -88,7 +86,7 @@ if prompt := st.chat_input():
     qa_chain = create_retrieval_chain(vectorstore.as_retriever(), combine_docs_chain)
 
     result = qa_chain.invoke({"input": prompt})
-    print(result)
+    #print(result)
     msg = result["answer"]
 
     st.session_state.messages.append({"role": "assistant", "content": msg})
