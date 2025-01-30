@@ -23,7 +23,7 @@ To run NFL RAG, ensure you have all the libraries included in `requirements.txt`
 `pip install -r requirements.txt`
 
 ## Usage
-1. Execute RAG.py to start the RAG model.
+1. Type `streamlit run RAG.py` in your command window to start the RAG model.
 2. Provide your OpenAI API Key in the sidebar of Streamlit interface.
 2. The vector database containing 32 most recent NFL news will be constructed in rag_db directory.
 3. Interact with RAG using natural language queries through Streamlit interface.

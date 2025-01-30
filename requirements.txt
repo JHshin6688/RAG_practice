@@ -7,3 +7,4 @@ flask
 chromadb
 langchain_huggingface
 bs4
+langgraph
