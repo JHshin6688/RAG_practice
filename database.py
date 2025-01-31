@@ -20,18 +20,19 @@ def create_database(url):
 
     dir_path = "vector_database"
 
-    for file in os.listdir(dir_path):
-        file_path = os.path.join(dir_path, file)
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.remove(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
+    if os.path.exists(dir_path):
+        for file in os.listdir(dir_path):
+            file_path = os.path.join(dir_path, file)
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.remove(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
 
     vectorstore = Chroma.from_documents(
         documents=all_splits, 
         embedding=OpenAIEmbeddings(),
         collection_name= "handbook",
-        persist_directory= "vector_database"
+        persist_directory= dir_path
         )
 
     return vectorstore
