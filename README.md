@@ -11,12 +11,16 @@ NFL RAG is a Retrieval-Augmented Generation (RAG) model designed to provide real
 
 ## Technical Details
 ### webutil.py
+- Utilizes the **BeautifulSoup** library to extract and process the most recent articles from the webpage.
 - Contains the **crawl** function, which is responsible for parsing news links from the official NFL news page.
-- Utilizes the **BeautifulSoup library** to extract and process the most recent articles from the webpage.
+
+### database.py
+- Builds a vector database using **LangChain's Chroma** to store and retrieve news articles efficiently.
+- The vector database will be constructed in the **vector_database** directory.
 
 ### RAG.py
-- Builds a vector database using **LangChain's Chroma** to store and retrieve news articles efficiently.
 - Implements a RAG model with **LangGraph** to maintain conversational context and improve response relevance over time.
+- Utilizes **Streamlit** to build a RAG interface.
 
 ## Requirements
 To run NFL RAG, ensure you have all the libraries included in `requirements.txt` installed:
@@ -25,5 +29,4 @@ To run NFL RAG, ensure you have all the libraries included in `requirements.txt`
 ## Usage
 1. Run `streamlit run RAG.py` command to start the RAG model.
 2. Provide your OpenAI API Key in the sidebar of Streamlit interface.
-2. The vector database containing 32 most recent NFL news will be constructed in rag_db directory.
 3. Interact with RAG using natural language queries through Streamlit interface.
