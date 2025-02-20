@@ -23,9 +23,9 @@ NFL RAG is a Retrieval-Augmented Generation (RAG) model designed to provide real
 - Utilizes **Streamlit** to build a RAG interface.
 
 ## Requirements
-To run NFL RAG, ensure you have all the libraries included in `requirements.txt` installed:
+- To run NFL RAG, ensure you have all the libraries included in `requirements.txt` installed:
 `pip install -r requirements.txt`
-Also, you have to create an environment file that contains your LangSmith API key.
+- Also, you have to create an environment file that contains your LangSmith API key.
 
 ## Usage
 0. Feel free to delete the outdated 'vector_database' directory after you clone the project.  
