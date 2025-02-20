@@ -20,19 +20,11 @@ with st.sidebar:
     "[View the source code](https://github.com/JHshin6688/RAG_practice)"
 st.title("🏈 NFL RAG")
 
-
 # Initialize session state for storing messages
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {"role": "assistant", "content": "Hi, I'm a NFL chatbot. How can I help you?"}
     ]
-
-# Initialize vector database with the most recent news articles
-if "vectorstore" not in st.session_state:
-    st.session_state["vectorstore"] = database.create_database("https://www.nfl.com/news/all-news")
-
-vectorstore = st.session_state["vectorstore"]
-retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
 
 # Display chat messages
 for msg in st.session_state.messages:
@@ -46,6 +38,13 @@ if prompt := st.chat_input():
 
     st.chat_message("user").write(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
+
+    # Initialize vector database with the most recent news articles
+    if "vectorstore" not in st.session_state:
+        st.session_state["vectorstore"] = database.create_database("https://www.nfl.com/news/all-news")
+
+    vectorstore = st.session_state["vectorstore"]
+    retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
 
     # Create RAG chain
     os.environ["OPENAI_API_KEY"] = openai_api_key
